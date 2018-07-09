@@ -9,6 +9,6 @@ public class ItemPrototype : ScriptableObject
 
 	public Item Clone()
 	{
-		return new Item(item);
+		return item.Clone();
 	}
 }

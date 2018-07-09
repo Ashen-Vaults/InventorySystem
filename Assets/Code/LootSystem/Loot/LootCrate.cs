@@ -29,7 +29,9 @@ public class LootCrate : MonoBehaviour
 
 		List<int> ids = probability.SelectIds( weights,  itemDropRange);
 
+		//TODO: Change from always giving 1st elem
 		Item i = prototype.loots[ids[0]].itemPrototype.Clone();
+
 		return i;
 	}
 

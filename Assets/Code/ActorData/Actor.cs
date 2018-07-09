@@ -8,33 +8,27 @@ public class Actor : MonoBehaviour
 {
 
 	[SerializeField]
-	Inventory _inventoryCollection;
+	[TextArea(1,15)]
+	string _json;
 
 	[SerializeField]
-	StatData _baseStats;
+	public ActorData data;
 
-	[SerializeField]
-	List<StatData> _modifiers;
-
-	public void Equip(Item i)
+	public void Init(ActorData data)
 	{
-		i.owner = this;
-		i.equipped = true;
-		_modifiers.Add(i.stats);
-		_inventoryCollection.items.Add(i);
-	}
-
-	public void UnEquip(Item i)
-	{
-		i.owner = null;
-		i.equipped = false;
-		_modifiers.Remove(i.stats);
-		_inventoryCollection.items.Remove(i);
+		this.data = data;
 	}
 
 	public StatData GetModifiedStats()
 	{
 	//		_modifiers.ForEach( s => s.a)
 		return null;
+	}
+
+	[ContextMenu("Save")]
+	public void Save()
+	{
+		_json = JsonUtility.ToJson(data, true);
+		PlayerPrefs.SetString(data.id, _json);
 	}
 }

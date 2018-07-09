@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class CompanionController : Actor 
 {
-
+    public Companion companionData;
 }
