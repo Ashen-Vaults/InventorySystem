@@ -8,29 +8,31 @@ using System.Linq;
 public class ActorData
 {
 
+	public string name;
+	public Texture2D iconSprite;
+
 	//These should NOT be serialized
-	public Inventory inventoryCollection;
+	private Inventory _inventoryCollection;
 	//They are in for testing 
 	//So i can easily see in the inspector
-	public List<StatData> modifiers;
+	private List<StatData> _modifiers;
 
 	public StatData baseStats;
 	public string id;
 	public GameObject gameObject;
 
-
 	public ActorData()
 	{
-		inventoryCollection = new Inventory();
-		modifiers = new List<StatData>();
+		_inventoryCollection = new Inventory();
+		_modifiers = new List<StatData>();
 	}
 
 	public void Equip(Item i)
 	{
 		i.ownerID = id;
 		i.equipped = true;
-		modifiers.Add(i.stats);
-		inventoryCollection.items.Add(i);
+		_modifiers.Add(i.stats);
+		_inventoryCollection.items.Add(i);
 		Save();
 	}
 
@@ -38,8 +40,8 @@ public class ActorData
 	{
 		i.ownerID = null;
 		i.equipped = false;
-		modifiers.Remove(i.stats);
-		inventoryCollection.items.Remove(i);
+		_modifiers.Remove(i.stats);
+		_inventoryCollection.items.Remove(i);
 		Save();
 	}
 
@@ -51,6 +53,10 @@ public class ActorData
 
 	public void SpawnItemGameObject()
 	{
-		inventoryCollection.items.ForEach( i => i.InstantiateGameObject());
+		_inventoryCollection.items.ForEach( i => 
+		{
+			if(!i.isActor)
+				i.InstantiateGameObject();
+		});
 	}
 }

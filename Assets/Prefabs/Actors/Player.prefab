@@ -55,11 +55,11 @@ MonoBehaviour:
   data:
     inventoryCollection:
       items: []
+    modifiers: []
     baseStats:
       attack: 0
       defense: 0
       miningEfficiency: 0
       luck: 0
-    modifiers: []
     id: player
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 1610153795720532}

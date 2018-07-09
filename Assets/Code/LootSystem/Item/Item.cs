@@ -26,6 +26,8 @@ public class Item
 
 	public List<string> tags;
 
+	public bool isActor;
+
 	public Item()
 	{
 		
@@ -41,6 +43,7 @@ public class Item
 		this.ownerID = i.ownerID;
 		this.stats = i.stats;
 		this.tags = i.tags;
+		this.isActor = i.isActor;
 		RandomizeStats();
 	}
 

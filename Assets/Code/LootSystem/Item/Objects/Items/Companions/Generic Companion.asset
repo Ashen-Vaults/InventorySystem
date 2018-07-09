@@ -18,7 +18,7 @@ MonoBehaviour:
     gameObject: {fileID: 1165896570495566, guid: 136dc2bbe7c3dad48ae2f01a0594f06a,
       type: 2}
     equipped: 0
-    owner: {fileID: 0}
+    ownerID: 
     stats:
       attack: 1
       defense: 1
@@ -26,3 +26,4 @@ MonoBehaviour:
       luck: 1
     tags:
     - companion
+    isActor: 1

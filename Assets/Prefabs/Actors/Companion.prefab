@@ -52,14 +52,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _json: 
-  _data:
-    inventoryCollection:
-      items: []
+  data:
     baseStats:
       attack: 0
       defense: 0
       miningEfficiency: 0
       luck: 0
-    modifiers: []
-    id: 
-    actorPrefab: {fileID: 1165896570495566}
+    id: companion
+    gameObject: {fileID: 1625782135620602, guid: 1ec2ec12a29990148a982a4e79edd9a8,
+      type: 2}
+  companionData:
+    name: 
+    desc: 
+    iconSprite: {fileID: 0}
+    gameObject: {fileID: 0}
+    equipped: 0
+    ownerID: 
+    stats:
+      attack: 0
+      defense: 0
+      miningEfficiency: 0
+      luck: 0
+    tags: []
+    isActor: 0
+    equips: []

@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfc0d75f8516e0479634b75bea7ee58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prototype: {fileID: 11400000, guid: b883c5d0b282fe940855eacc728d1088, type: 2}
+  prototype: {fileID: 11400000, guid: 895969e0dd71ef24e9498d14a61c55a0, type: 2}
   itemDropRange:
     start: 1
     end: 1
@@ -242,9 +242,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventoryCollection:
     items: []
-  _actor: {fileID: 1020750274}
+  actorFactory: {fileID: 1909719167}
+  _configs: {fileID: 0}
+  _actor: {fileID: 0}
   _itemId: 0
-  _json: 
+  _json: "{\n    \"items\": [\n        {\n            \"name\": \"Jim\",\n            \"desc\":
+    \"A basic bitch, if you will.\",\n            \"iconSprite\": {\n                \"instanceID\":
+    790\n            },\n            \"gameObject\": {\n                \"instanceID\":
+    10252\n            },\n            \"equipped\": true,\n            \"ownerID\":
+    \"player\",\n            \"stats\": {\n                \"attack\": 3.0,\n                \"defense\":
+    1.0,\n                \"miningEfficiency\": 1.0,\n                \"luck\": 1.0\n
+    \           },\n            \"tags\": [\n                \"companion\"\n            ]\n
+    \       },\n        {\n            \"name\": \"Basic Item\",\n            \"desc\":
+    \"This item is soo basic.\",\n            \"iconSprite\": {\n                \"instanceID\":
+    800\n            },\n            \"gameObject\": {\n                \"instanceID\":
+    10180\n            },\n            \"equipped\": true,\n            \"ownerID\":
+    \"companion\",\n            \"stats\": {\n                \"attack\": 14.0,\n
+    \               \"defense\": 1.0,\n                \"miningEfficiency\": 1.0,\n
+    \               \"luck\": 1.0\n            },\n            \"tags\": [\n                \"weapon\"\n
+    \           ]\n        },\n        {\n            \"name\": \"Basic Item\",\n
+    \           \"desc\": \"This item is soo basic.\",\n            \"iconSprite\":
+    {\n                \"instanceID\": 800\n            },\n            \"gameObject\":
+    {\n                \"instanceID\": 10180\n            },\n            \"equipped\":
+    true,\n            \"ownerID\": \"companion\",\n            \"stats\": {\n                \"attack\":
+    14.0,\n                \"defense\": 1.0,\n                \"miningEfficiency\":
+    1.0,\n                \"luck\": 1.0\n            },\n            \"tags\": [\n
+    \               \"weapon\"\n            ]\n        }\n    ]\n}"
 --- !u!4 &433301743
 Transform:
   m_ObjectHideFlags: 0
@@ -339,83 +362,6 @@ Transform:
   m_Father: {fileID: 816663660}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &711078400
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4819295957159114, guid: e17c0e3f8c847e64d8d33027452dfcaf, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819295957159114, guid: e17c0e3f8c847e64d8d33027452dfcaf, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819295957159114, guid: e17c0e3f8c847e64d8d33027452dfcaf, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819295957159114, guid: e17c0e3f8c847e64d8d33027452dfcaf, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819295957159114, guid: e17c0e3f8c847e64d8d33027452dfcaf, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819295957159114, guid: e17c0e3f8c847e64d8d33027452dfcaf, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819295957159114, guid: e17c0e3f8c847e64d8d33027452dfcaf, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819295957159114, guid: e17c0e3f8c847e64d8d33027452dfcaf, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114614620405361766, guid: e17c0e3f8c847e64d8d33027452dfcaf,
-        type: 2}
-      propertyPath: _data.id
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 114614620405361766, guid: e17c0e3f8c847e64d8d33027452dfcaf,
-        type: 2}
-      propertyPath: data.id
-      value: player
-      objectReference: {fileID: 0}
-    - target: {fileID: 114614620405361766, guid: e17c0e3f8c847e64d8d33027452dfcaf,
-        type: 2}
-      propertyPath: data.actorPrefab
-      value: 
-      objectReference: {fileID: 1020750273}
-    - target: {fileID: 114614620405361766, guid: e17c0e3f8c847e64d8d33027452dfcaf,
-        type: 2}
-      propertyPath: data.baseStats.attack
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114614620405361766, guid: e17c0e3f8c847e64d8d33027452dfcaf,
-        type: 2}
-      propertyPath: data.baseStats.defense
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114614620405361766, guid: e17c0e3f8c847e64d8d33027452dfcaf,
-        type: 2}
-      propertyPath: data.baseStats.miningEfficiency
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114614620405361766, guid: e17c0e3f8c847e64d8d33027452dfcaf,
-        type: 2}
-      propertyPath: data.baseStats.luck
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: e17c0e3f8c847e64d8d33027452dfcaf, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &816663659
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,17 +392,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1020750273 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1610153795720532, guid: e17c0e3f8c847e64d8d33027452dfcaf,
-    type: 2}
-  m_PrefabInternal: {fileID: 711078400}
---- !u!114 &1020750274 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114614620405361766, guid: e17c0e3f8c847e64d8d33027452dfcaf,
-    type: 2}
-  m_PrefabInternal: {fileID: 711078400}
-  m_Script: {fileID: 11500000, guid: 95a26c3eeac4d804bbf388c91a48056d, type: 3}
 --- !u!1 &1594901457
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,33 +485,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    inventoryCollection:
-      items:
-      - name: Basic Item
-        desc: This item is soo basic.
-        iconSprite: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
-        gameObject: {fileID: 1358845758171496, guid: a24c70358aa755e4ca479419f6071ea3,
-          type: 2}
-        equipped: 1
-        ownerID: 
-        stats:
-          attack: 1
-          defense: 1
-          miningEfficiency: 1
-          luck: 1
-        tags: []
     baseStats:
       attack: 0
       defense: 0
       miningEfficiency: 0
       luck: 0
-    modifiers:
-    - attack: 1
-      defense: 1
-      miningEfficiency: 1
-      luck: 1
     id: 
-    actorPrefab: {fileID: 1020750273}
+    gameObject: {fileID: 0}
+  _instantiatedActors: []
   _json: "{\n    \"inventoryCollection\": {\n        \"items\": [\n            {\n
     \               \"name\": \"Basic Item\",\n                \"desc\": \"This item
     is soo basic.\",\n                \"iconSprite\": {\n                    \"instanceID\":

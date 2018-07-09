@@ -14,9 +14,21 @@ public class Actor : MonoBehaviour
 	[SerializeField]
 	public ActorData data;
 
-	public void Init(ActorData data)
+	public virtual void Init(ActorData data)
 	{
 		this.data = data;
+
+		if(this.data.gameObject != null)
+		{
+			Instantiate(this.data.gameObject);
+		}
+		Save();//May need to move for companion
+	}
+
+
+	void OnDisable()
+	{
+		Save();
 	}
 
 	public StatData GetModifiedStats()

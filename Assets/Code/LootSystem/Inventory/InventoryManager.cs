@@ -19,6 +19,9 @@ public class InventoryManager : MonoBehaviour
 
 	List<ActorData> _actorDatas;
 
+	[SerializeField]
+	InventoryConfig _configs;
+
 
 	//In for testing
 	public static InventoryManager instance;
@@ -27,6 +30,12 @@ public class InventoryManager : MonoBehaviour
 	{
 		instance = this;	
 		_actorDatas = new List<ActorData>();	
+
+		if(_actor != null)
+		{
+			_actorDatas.Add(_actor.data);
+		}
+
 	}
 
 	public void AddItem(Item i)
@@ -64,17 +73,18 @@ public class InventoryManager : MonoBehaviour
 		Save();
 	}
 
-	void SpawnOwner(Actor a)
-	{
-		Instantiate(a.gameObject);
-	}
-
 	public List<Item> GetFilteredInventory(string filter)
     {
         return _inventoryCollection.items.Where(i => i.tags.Any(t => String.Equals(t, filter, StringComparison.CurrentCultureIgnoreCase))).ToList();
     }
 
-	
+    public List<Item> GetFilteredInventory(List<string> filters, int count)
+    {
+        List<Item> filteredItems = new List<Item>();
+        filters.ForEach(f => filteredItems.AddRange(GetFilteredInventory(filters, count)));
+        return filteredItems;
+    }
+
 	List<Item> GetActorsItems(ActorData a)
 	{
 		return _inventoryCollection.items.Where(i => i.ownerID == a.id).ToList();
@@ -91,51 +101,39 @@ public class InventoryManager : MonoBehaviour
 	[ContextMenu("Load")]
 	void Load()
 	{
+		// Loads the entire inventory from json
 		_inventoryCollection = JsonUtility.FromJson<Inventory>(_json);
 
-	
+		//For each unique ownerID on each item, store those ids
+		List<string> actorIDS = _inventoryCollection.items
+									.Select( i => i.ownerID)
+									.Distinct()
+									.ToList();
 
-		//Create _actorDatas based off the inventory owners ids
-		//for each unique ownerID in all inventory, create
-		//new actorDatas and add the 
+		//Look up the actorData associated with all the ids and cache them
+		actorIDS.ForEach( id => _actorDatas.Add(LoadFromPlayerPrefs<ActorData>(id)));
 
-		List<string> actorIDS = _inventoryCollection.items.Select( i => i.ownerID).Distinct().ToList();
-
-		actorIDS.ForEach( a => _actorDatas.Add( new ActorData() { id = a}));
-
+		//For each actorData equip all of there items
+		//And the actor in the scene
 		_actorDatas.ForEach(a =>
 		{
-			GetActorsItems(a).ForEach(i => EquipItem(a,i));
-			actorFactory.CreateActor(a);
+			GetActorsItems(a)
+				.ForEach(i =>
+				{
+					EquipItem(a,i);
+					if(i.isActor) //If the item is an actor (companion) dont spawn here
+						actorFactory.CreateActor<Player>(a);
+					else
+						actorFactory.CreateActor<CompanionController>(a);
+				});
 		});	
-		}
 
+	}	
 
-		//Get all items for an actor
-		///_inventoryCollection.items.Where(i => _actorDatas.Any(a => String.Equals(a.id, i.ownerID, StringComparison.CurrentCultureIgnoreCase))).ToList();
-
-		//Equip all items to each actor
-		//_inventoryCollection.items.ForEach( i => EquipItem(null, i));    
-
-		//Equip Items
-		// _actorDatas.ForEach(a => 
-			// EquipItem()
-
-		// Need to only create actor if doesn't exist
-		//Use cached actor data to populate scene with actors
-
-
-		//Equips items for each actor
-		//_inventoryCollection.items.ForEach(i => EquipItem(data, i));
-
-		//Spawns any owners who aren't already in the scene
-		//_inventoryCollection.items.ForEach( i => Instantiate(i.gameObject));
-		
-		//Get Companion Items
-		//_inventoryCollection.items.Where()
-
-		//Equip Items to companions
-		//GetFilteredInventory("companion").ForEach( c => c.gameObject.GetComponent<CompanionController>().Equip() );
+	public Item RequestItemByOwner(string id)
+	{
+		return _inventoryCollection.items.FirstOrDefault( i => i.ownerID == id);
+	}
 
 	
 

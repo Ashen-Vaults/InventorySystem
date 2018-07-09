@@ -12,23 +12,23 @@ public class ActorFactory : MonoBehaviour
 	[SerializeField]
 	List<Actor> _instantiatedActors;
 
-	public Actor CreateActor(ActorData data)
+	public Actor CreateActor<T>(ActorData data) where T : Actor
 	{
-		Actor a = GetActor(data);
+		T a = GetActor<T>(data);
 		if(a == null)
 		{
 			GameObject g = new GameObject(data.id);
-			a = g.AddComponent<Actor>();
+			a = g.AddComponent<T>();
 			_instantiatedActors.Add(a);
 		}
 		a.Init(data);
-		//data.SpawnItemGameObject();
+		data.SpawnItemGameObject();
 		return a;
 	}
 
-	public Actor GetActor(ActorData data)
+	public T GetActor<T>(ActorData data) where T : Actor
 	{
-		return _instantiatedActors.FirstOrDefault( a => a.data.id == data.id);
+		return (T)_instantiatedActors.FirstOrDefault( a => a.data.id == data.id);
 	}
 
 
@@ -40,7 +40,7 @@ public class ActorFactory : MonoBehaviour
 	void TestCreateActor()
 	{
 		_data = Load();
-		CreateActor(_data);
+		//CreateActor(_data);
 	}
 
 	ActorData Load()

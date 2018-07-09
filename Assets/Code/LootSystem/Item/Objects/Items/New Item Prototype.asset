@@ -18,9 +18,9 @@ MonoBehaviour:
     gameObject: {fileID: 1358845758171496, guid: a24c70358aa755e4ca479419f6071ea3,
       type: 2}
     equipped: 0
-    owner: {fileID: 0}
+    ownerID: 
     stats:
-      attack: 1
+      attack: 12
       defense: 1
       miningEfficiency: 1
       luck: 1

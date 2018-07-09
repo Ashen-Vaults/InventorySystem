@@ -6,5 +6,5 @@ using System;
 [Serializable]
 public class Companion : Item
 {
-	public List<Item> equips;
+	
 }
